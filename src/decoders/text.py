@@ -23,5 +23,5 @@ class Text(DecoderPlugin):
             self.layer.name = "text"
             self.layer.add_header({'length': len(content)})
             return self.layer
-        except:
-            raise ValueError("[Phorcys] Failed to parse input. Not text")
+        except Exception as e:
+            raise ValueError(f"[Phorcys] Failed to parse input. Not text ({e})")

@@ -15,8 +15,8 @@ class YaraInspector:
         self.layer = layer
         count = 0
         leaves = self.layer.leaves
-        for l in leaves:
-            data = l.raw_data
+        for leaf in leaves:
+            data = leaf.raw_data
             if type(data) is not str:
                 data = str(data)
             matches = self.rules.match(data=data)
@@ -27,6 +27,6 @@ class YaraInspector:
                         rules[str(m)] = {'rule': str(m), 'tags': m.tags, 'count': len(m.strings)}
                     else:
                         rules[str(m)]['count'] += len(m.strings)
-                    l.add_matching_rule({'rule': str(m), 'tags': m.tags, 'count': len(m.strings)})
+                    leaf.add_matching_rule({'rule': str(m), 'tags': m.tags, 'count': len(m.strings)})
                     tags.extend(m.tags)
         return count, list(set(tags)), rules

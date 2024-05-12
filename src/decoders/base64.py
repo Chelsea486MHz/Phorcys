@@ -28,5 +28,5 @@ class Base64(DecoderPlugin):
             self.layer.human_readable = False
             self.layer.headers = [{'length': len(decoded)}]
             self.layer.lines = split_string(str(data), 64)
-        except:
-            raise ValueError("[Phorcys] Failed to parse input. Not BASE64")
+        except base64.binascii.Error as e:
+            raise ValueError(f"[Phorcys] Failed to parse input. Not BASE64 ({e})")

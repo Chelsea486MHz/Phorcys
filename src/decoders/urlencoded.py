@@ -34,5 +34,5 @@ class UrlEncoded(DecoderPlugin):
                 child.lines = [v]
                 self.layer.lines.append('%s=%s' % (k, v))
                 self.layer.add_extracted_layer(child)
-        except:
-            raise ValueError("[Phorcys] Failed to parse input.")
+        except Exception as e:
+            raise ValueError(f"[Phorcys] Failed to parse input. ({e})")

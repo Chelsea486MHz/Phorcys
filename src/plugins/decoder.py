@@ -17,4 +17,4 @@ class DecoderPlugin(IPlugin):
         return "Decoder"
 
     def __call__(self, parent: Layer, **metadata) -> Optional[Layer]:
-        raise NotImplemented()
+        raise NotImplementedError()

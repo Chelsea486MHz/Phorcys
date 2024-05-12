@@ -25,5 +25,5 @@ class Html(DecoderPlugin):
                 self.layer.name = "html"
             else:
                 raise ValueError("[Phorcys] Failed to parse input. Not HTML")
-        except:
-            raise ValueError("[Phorcys] Failed to parse input. Not HTML")
+        except Exception as e:
+            raise ValueError(f"[Phorcys] Failed to parse input. Not HTML ({e})")

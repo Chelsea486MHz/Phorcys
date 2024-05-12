@@ -27,7 +27,6 @@ class HttpHeaders(DecoderPlugin):
                 raise Exception()
 
             sio = StringIO(http_header)
-            headers = []
             first_line = True
             lines = sio.readlines()
             self.layer.lines = lines
@@ -42,7 +41,7 @@ class HttpHeaders(DecoderPlugin):
                     split = line.split(': ')
                     self._decode_data(split[0].strip(), split[1].strip())
         except Exception as e:
-            raise ValueError("[Phorcys] Failed to parse input.")
+            raise ValueError(f"[Phorcys] Failed to parse input. ({e})")
 
     def _decode_data(self, key, value):
         child = Layer(True)

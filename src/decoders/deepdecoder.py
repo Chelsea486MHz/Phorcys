@@ -58,6 +58,7 @@ class DeepDecoder:
                     leaf.lines = utils.to_hex_lines(bytes(leaf.raw_data))
                     leaf.name = 'raw'
                 except Exception as e:
+                    print(e)
                     pass
 
     def decode(self, data, **kwargs) -> Layer:
@@ -109,7 +110,7 @@ class DeepDecoder:
             except Exception as e:
                 # print(traceback.format_exc())
                 # print('Not %s' % type(p))
-                # print(e)
+                print(e)
                 pass
 
         return None

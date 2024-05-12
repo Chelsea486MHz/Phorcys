@@ -30,4 +30,4 @@ class Multipart(DecoderPlugin):
                 self.layer.lines.append('%s' % v)
                 self.layer.add_extracted_layer(child)
         except Exception as e:
-            raise ValueError("[Phorcys] Failed to parse input.")
+            raise ValueError(f"[Phorcys] Failed to parse input. ({e})")

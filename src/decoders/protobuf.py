@@ -12,8 +12,8 @@ class Protobuf(DecoderPlugin):
         self.layer = parent
         try:
             self._decode(data)
-        except:
-            raise ValueError("[Phorcys] Failed to parse input. Not protobuf")
+        except Exception as e:
+            raise ValueError(f"[Phorcys] Failed to parse input. Not protobuf ({e})")
         self.layer.name = 'protobuf'
         self.layer.is_structured = True
         self.layer.human_readable = True
@@ -32,18 +32,18 @@ class Protobuf(DecoderPlugin):
     def _decode_data(self):
         prev = []
         for ll in self.layer.lines:
-            l = ll.strip()
-            if '{' in l:
-                name = l[:l.find('{')]
+            line = ll.strip()
+            if '{' in line:
+                name = line[:line.find('{')]
                 prev.append(name.strip())
-            elif ':' in l:
-                name = l[:l.find(':')]
+            elif ':' in line:
+                name = line[:line.find(':')]
                 prefix = ';'.join(prev)
-                value = l[l.find(':') + 1:]
+                value = line[line.find(':') + 1:]
                 child = Layer(True)
                 child.parent = self.layer
                 child.raw_data = '%s;%s=%s' % (prefix.strip(), name.strip(), value.strip())
                 child.lines = [child.raw_data]
                 self.layer.add_extracted_layer(child)
-            elif '}' in l:
+            elif '}' in line:
                 prev.pop()

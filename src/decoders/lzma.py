@@ -23,5 +23,5 @@ class Lzma(DecoderPlugin):
             self.layer.add_extracted_layer(child)
             self.layer.headers = [{'length': len(unzipped)}]
             self.layer.lines = utils.to_hex_lines(unzipped)
-        except:
-            raise ValueError("[Phorcys] Failed to parse input. Not lzma")
+        except lzma.LZMAError as e:
+            raise ValueError(f"[Phorcys] Failed to parse input. Not lzma ({e})")

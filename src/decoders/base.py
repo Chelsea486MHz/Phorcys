@@ -99,11 +99,11 @@ class Layer:
 
     def _get_safe_lines(self):
         lines = []
-        for l in self.lines:
-            if type(l) is str:
-                lines.append(html.escape(l))
+        for line in self.lines:
+            if type(line) is str:
+                lines.append(html.escape(line))
             else:
-                lines.append(l)
+                lines.append(line)
         return lines
 
     def dict(self, recursive=False) -> dict:
@@ -113,7 +113,7 @@ class Layer:
             'human_readable': self.human_readable,
             'matching_rules': self.matching_rules,
             'headers': self.headers,
-            'children': [l.dict(recursive) for l in self._layers],
+            'children': [layer.dict(recursive) for layer in self._layers],
             'length': -1,
             'text': self.lines,
         }

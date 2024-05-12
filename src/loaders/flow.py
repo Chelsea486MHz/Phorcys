@@ -96,7 +96,7 @@ def convert(flow):
 
     # Store binary data as base64
     entry["request"]["content"] = ''
-    if type(flow.response.content) == str:
+    if flow.response.content is str:
         entry["response"]["content"] = base64.b64encode(flow.response.content.encode()).decode()
     else:
         entry["response"]["content"] = base64.b64encode(flow.response.content).decode()
@@ -110,7 +110,7 @@ def convert(flow):
             "mimeType": flow.request.headers.get("Content-Type", ""),
             "params": params
         }
-        if type(flow.request.content) == str:
+        if flow.request.content is str:
             entry["request"]["content"] = base64.b64encode(flow.request.raw_content.encode()).decode()
         else:
             entry["request"]["content"] = base64.b64encode(flow.request.content).decode()
@@ -176,7 +176,8 @@ class FlowLoader(DumpLoader):
                 try:
                     converted = convert(flow)
                     self.flows.append(converted)
-                except:
+                except Exception as e:
+                    print(f"Error converting flow: {e}")
                     pass
 
     def json(self, indent=0):

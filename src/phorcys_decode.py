@@ -8,15 +8,15 @@ from phorcys.inspectors.yara_inspector import YaraInspector
 from phorcys.loaders.flow import FlowLoader
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = 'Recursive network payloads decoder.')
-    parser.add_argument('-y', dest = 'yara_file', action = 'store',
-                        help = 'path to file containing Yara rules')
-    parser.add_argument('-f', dest = 'flow_file', action = 'store',
-                        help = 'path to the MITM dump (.flow)')
-    parser.add_argument('-b', dest = 'binary_file', action = 'store',
-                        help = 'path to the file containing the payload to decode')
-    parser.add_argument('-p', dest = 'list_plugins', action = 'store_true',
-                        help = 'list loaded plugins')
+    parser = argparse.ArgumentParser(description='Recursive network payloads decoder.')
+    parser.add_argument('-y', dest='yara_file', action='store',
+                        help='path to file containing Yara rules')
+    parser.add_argument('-f', dest='flow_file', action='store',
+                        help='path to the MITM dump (.flow)')
+    parser.add_argument('-b', dest='binary_file', action='store',
+                        help='path to the file containing the payload to decode')
+    parser.add_argument('-p', dest='list_plugins', action='store_true',
+                        help='list loaded plugins')
 
     args = parser.parse_args()
 
@@ -49,11 +49,11 @@ if __name__ == "__main__":
         di.inspect()
         time_elapsed = datetime.now() - start_time
         print('Time elapsed (hh:mm:ss.ms) {}'.format(time_elapsed), file=sys.stderr)
-        print(flows.json(indent = 2))
+        print(flows.json(indent=2))
 
     if binary_mode:
         dd = DeepDecoder()
-        payload = dd.decode(open(args.binary_file, mode = 'rb').read())
+        payload = dd.decode(open(args.binary_file, mode='rb').read())
         if yara_mode:
             inspectors[0](payload)
         print(payload)

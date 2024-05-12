@@ -27,4 +27,4 @@ class Css(DecoderPlugin):
             else:
                 raise ValueError("[Phorcys] Failed to parse input. Not CSS")
         except Exception as e:
-            raise ValueError("[Phorcys] Failed to parse input. Not CSS")
+            raise ValueError(f"[Phorcys] Failed to parse input. Not CSS ({e})")

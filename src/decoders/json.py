@@ -27,7 +27,7 @@ class Json(DecoderPlugin):
             self._decode_data(obj)
             self.layer.lines = content.splitlines()
         except Exception as e:
-            raise ValueError("[Phorcys] Failed to parse input.")
+            raise ValueError(f"[Phorcys] Failed to parse input. ({e})")
 
     def _decode_data(self, obj):
         from flatten_json import flatten

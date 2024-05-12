@@ -20,6 +20,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install setuptools wheel build bandit flake8
 
+      - name: Linting
+        run: flake8 src tests
+
       - name: Static security analysis
         run: bandit -c pyproject.toml -r src
 
