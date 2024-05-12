@@ -1,9 +1,11 @@
 # Example with Yara rules applied on binary file
-Generate a dummy file
-```commandline
-echo "{\"title\": \"Hello world\"}" | gzip -c | base64 > example
-```
-write your rules
+
+Generate a dummy file:
+
+`$ echo "{\"title\": \"Hello world\"}" | gzip -c | base64 > example`
+
+With your own rules:
+
 ```
 # rules.yar
 rule r: dummy_rule
@@ -14,12 +16,14 @@ rule r: dummy_rule
         $my_text_string
 }
 ```
-then run *Phorcys*
-```commandline
-phorcys_decode.py -b example -y rules.yar
+
+Run *Phorcys*:
+
+`$ phorcys_decode.py -b example -y rules.yar`
+
+The resulting decoded payload look something like this:
+
 ```
-and get the result 
-```json
 {
   "children": [
     {

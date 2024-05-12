@@ -1,12 +1,14 @@
 # Example with a `.flow` file
-To analyze your file, give it to *Phorcys*. You can also specify a Yara rule file with the `-y` option
-```commandline
-phorcys_decode.py -f run.flow
+
+Provide your file to *Phorcys* for decoding. A Yara rule file can be specified with the `-y` flag:
+
+`$ phorcys_decode.py -f run.flow`
+
+The generated JSON is largely inspired by the [HAR format](https://en.wikipedia.org/wiki/.har).
+
 ```
-and get the result. The generated JSON is largely inspired by the [HAR format](https://en.wikipedia.org/wiki/.har).
-```json
 [
-{
+  {
     "startedDateTime": "2018-02-08T20:44:35.533261+00:00",
     "time": 405,
     "id": "252132dd-dcb1-41c0-930d-db44658ad73e",

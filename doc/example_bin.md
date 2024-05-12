@@ -1,14 +1,14 @@
 # Example with binary file
-Generate a dummy file
-```commandline
-echo "{\"title\": \"Hello world\"}" | gzip -c | base64 > example
+
+Generate a dummy file:
+
+`$ echo "{\"title\": \"Hello world\"}" | gzip -c | base64 > example`
+
+Decode it:
+
+`$ phorcys_decode.py -b example`
+
 ```
-then decode it
-```commandline
-phorcys_decode.py -b example
-```
-and get the result
-```json
 {
   "children": [
     {

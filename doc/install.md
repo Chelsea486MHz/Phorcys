@@ -1,33 +1,47 @@
 # Installation
-*Phorcys* has been tested on Ubuntu 18.04 and Debian 9.4.
+
+*Phorcys* has been tested on Ubuntu 23.10.
 
 ## System requirements
-On Debian-like systems
-```commandline
-sudo apt-get install python3 python3-pip python3-dev protobuf-compiler build-essential
+
+On Debian-like systems:
+
+`$ sudo apt-get install python3 python3-pip python3-dev protobuf-compiler build-essential`
+
+## Install the package in a venv
+
+*Note: as the package isn't uploaded yet, this method is currently unvailable.*
+
+Create your virtualenv:
+
+`$ sudo apt-get virtualenv`
+
+Install *Phorcys*:
+
+```
+$ python3 -m venv phorcys_venv
+$ source phorcys_venv/bin/activate
+$ pip install phorcys
 ```
 
-## With virtualenv
-```commandline
-sudo apt-get virtualenv
+## Run Phorcys in a Docker container
+
+*Note: The Docker integration is not implemented yet, this method is currently unvailable.*
+
+If you're afraid of a payload compromising your system during decoding, you might want to run Phorcys in a container.
+
+As compression-based logic bombs are capable of impacting your host, a Docker Compose file is provided, setting up the container with a configurable memory limit to mitigate such attack.
+
+Run the following command at the root of this repository to run Phorcys in a Docker container with memory limitations:
+
 ```
-Create your virtualenv and install *Phorcys*
-```commandline
-mkdir my_venv
-cd my_venv
-virtualenv venv -p python3
-source venv/bin/active
-pip install phorcys
+$ docker compose up
 ```
 
-## Without virtualenv
-```commandline
-pip3 install phorcys
-```
+## Arguments reference
 
-## Usage
-```commandline
-phorcys_decode.py -h                                                                                                                                          130 ↵
+```
+$ phorcys_decode.py -h
 usage: phorcys_decode.py [-h] [-y YARA_FILE] [-f FLOW_FILE] [-b BINARY_FILE]
                          [-p]
 
