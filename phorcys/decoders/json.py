@@ -1,4 +1,6 @@
-from mitmproxy.contentviews.json import *
+from mitmproxy.contentviews.json import json
+
+from typing import Optional
 
 from phorcys.decoders.base import Layer
 from phorcys.plugins.decoder import DecoderPlugin
