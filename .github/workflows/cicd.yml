@@ -21,10 +21,10 @@ jobs:
           pip install setuptools wheel build bandit flake8
 
       - name: Linting
-        run: flake8 src tests
+        run: flake8 phorcys tests
 
       - name: Static security analysis
-        run: bandit -c pyproject.toml -r src
+        run: bandit -c pyproject.toml -r phorcys
 
       - name: Build package
         run: python -m build
