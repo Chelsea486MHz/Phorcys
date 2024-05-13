@@ -23,6 +23,9 @@ jobs:
       - name: Linting for source code
         run: flake8 phorcys
 
+      - name: Decoding tests
+        run: python -m unittest tests/deepdecoder.py
+
       - name: Static security analysis
         run: bandit -c pyproject.toml -r phorcys
 
