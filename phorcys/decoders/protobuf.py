@@ -1,6 +1,5 @@
-import subprocess
-import tempfile
 from typing import Optional
+from protobuf_decoder import protobuf_decoder
 
 from phorcys.decoders.base import Layer
 from phorcys.plugins.decoder import DecoderPlugin
@@ -20,14 +19,10 @@ class Protobuf(DecoderPlugin):
         return self.layer
 
     def _decode(self, data, **metadata):
-        with tempfile.NamedTemporaryFile(delete=True) as tf:
-            tf.write(data)
-            tf.seek(0)
-            content = subprocess.check_output("cat %s | protoc --decode_raw" % tf.name, shell=True,
-                                              universal_newlines=True)
-            self.layer.raw_data = content
-            self.layer.lines = content.splitlines()
-            self._decode_data()
+        content = protobuf_decoder.Parser().parse(data)
+        self.layer.raw_data = content
+        self.layer.lines = content.splitlines()
+        self._decode_data()
 
     def _decode_data(self):
         prev = []
