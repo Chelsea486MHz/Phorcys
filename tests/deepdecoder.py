@@ -1,5 +1,4 @@
 import unittest
-import json
 import os
 
 from phorcys.decoders.deepdecoder import DeepDecoder
@@ -18,8 +17,7 @@ def runDeepDecoder(payload_filename):
 
     payload = payload_file.read()
     payload_file.close()
-    decoded_data = json.loads(dd.decode(payload))
-    decoded_string = decoded_data["children"][0]["text"][0]
+    decoded_string = dd.decode(payload).children[0].text[0]
     return decoded_string
 
 

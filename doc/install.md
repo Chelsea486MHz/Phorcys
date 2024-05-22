@@ -24,7 +24,11 @@ $ source phorcys_venv/bin/activate
 $ pip install phorcys
 ```
 
-## Run Phorcys in a Docker container
+## Pull the Docker image
+
+*Note: as the image isn't uploaded yet, this method is currently unvailable.*
+
+## Build the Phorcys Docker container
 
 *Note: The Docker integration is not implemented yet, this method is currently unvailable.*
 
@@ -32,10 +36,10 @@ If you're afraid of a payload compromising your system during decoding, you migh
 
 As compression-based logic bombs are capable of impacting your host, a Docker Compose file is provided, setting up the container with a configurable memory limit to mitigate such attack.
 
-Run the following command at the root of this repository to run Phorcys in a Docker container with memory limitations:
+Run the following command at the root of this repository to build the Phorcys container:
 
 ```
-$ docker compose up
+$ docker build -t phorcys -f Docker/Dockerfile .
 ```
 
 ## Arguments reference
