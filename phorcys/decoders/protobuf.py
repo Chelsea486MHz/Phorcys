@@ -1,5 +1,5 @@
 from typing import Optional
-from protobuf_decoder import protobuf_decoder
+from protobuf_decoder.protobuf_decoder import Parser as ProtobufParser
 
 from phorcys.decoders.base import Layer
 from phorcys.plugins.decoder import DecoderPlugin
@@ -19,7 +19,7 @@ class Protobuf(DecoderPlugin):
         return self.layer
 
     def _decode(self, data, **metadata):
-        content = protobuf_decoder.Parser().parse(data)
+        content = ProtobufParser().parse(data)
         self.layer.raw_data = content
         self.layer.lines = content.splitlines()
         self._decode_data()
